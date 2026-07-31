@@ -4,7 +4,6 @@ import { SEED_TREKS } from "@/lib/seed-data";
 import Hero from "@/components/home/Hero";
 import TrekCard from "@/components/treks/TrekCard";
 import FAQ from "@/components/home/FAQ";
-import Newsletter from "@/components/home/Newsletter";
 import { TESTIMONIALS, Trek } from "@/types";
 import { Star } from "lucide-react";
 import Link from "next/link";
@@ -106,7 +105,6 @@ export default async function HomePage() {
       </section>
 
       <FAQ />
-      <Newsletter />
     </>
   );
 }
