@@ -20,7 +20,6 @@ export async function GET(req: NextRequest) {
       Phone: b.phone,
       Email: b.email,
       Trek: b.trekTitle,
-      "Trek Date": b.trekDate || "-",
       Participants: b.participants,
       "Grand Total": b.grandTotal,
       "Payment Status": b.paymentStatus,

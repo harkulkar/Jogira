@@ -10,40 +10,28 @@ import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-300 dark:border-white/10 dark:bg-gray-900/95"
     >
       <nav className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center justify-start gap-3 group">
           <Image
             src="/logo.png"
             alt="Jogira Logo"
-            width={160}
-            height={70}
-            className="h-11 w-auto object-contain"
+            width={420}
+            height={96}
+            className="h-14 w-auto object-contain md:h-16"
             priority
           />
-          <span
-            className={`text-xl font-bold transition-colors ${
-              scrolled ? "text-primary dark:text-primary-light" : "text-white"
-            }`}
-          >
+          <span className="text-xl font-bold text-primary transition-colors dark:text-primary-light">
             Jogira
           </span>
         </Link>
@@ -53,11 +41,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`font-medium transition-colors hover:text-secondary ${
-                scrolled
-                  ? "text-gray-700 dark:text-gray-200"
-                  : "text-white/90 hover:text-white"
-              }`}
+              className="font-medium text-gray-700 transition-colors hover:text-secondary dark:text-gray-200"
             >
               {link.label}
             </Link>
@@ -65,11 +49,7 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`p-2 rounded-full transition-colors ${
-                scrolled
-                  ? "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200"
-                  : "hover:bg-white/10 text-white"
-              }`}
+              className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
               aria-label="Toggle dark mode"
             >
               {theme === "dark" ? (
@@ -85,9 +65,7 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`p-2 rounded-full ${
-                scrolled ? "text-gray-700 dark:text-gray-200" : "text-white"
-              }`}
+              className="rounded-full p-2 text-gray-700 dark:text-gray-200"
               aria-label="Toggle dark mode"
             >
               {theme === "dark" ? (
@@ -99,7 +77,7 @@ export default function Navbar() {
           )}
           <button
             onClick={() => setOpen(!open)}
-            className={`p-2 ${scrolled ? "text-gray-700 dark:text-gray-200" : "text-white"}`}
+            className="p-2 text-gray-700 dark:text-gray-200"
             aria-label="Toggle menu"
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

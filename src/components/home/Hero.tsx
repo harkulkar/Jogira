@@ -41,17 +41,6 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="absolute top-6 left-6 md:top-8 md:left-12 flex items-center"
         >
-          <Image
-            src="/logo.png"
-            alt="Jogira Logo"
-            width={200}
-            height={100}
-            className="h-24 w-auto object-contain drop-shadow-2xl"
-            priority
-          />
-          {/* <span className="text-4xl font-bold text-blue drop-shadow-lg">
-    Jogira
-</span> */}
 
         </motion.div>
         <motion.h1

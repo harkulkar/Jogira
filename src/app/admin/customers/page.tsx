@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 interface Customer {
+  id: string;
   name: string;
   email: string;
   phone: string;
@@ -27,7 +28,9 @@ export default function AdminCustomersPage() {
             grandTotal: number;
             paymentStatus: string;
           }) => {
-            const key = b.email;
+            const key = [b.email || "no-email", b.phone || "no-phone", b.customerName || "unknown"]
+              .map((value) => value.trim().toLowerCase())
+              .join("|");
             const existing = map.get(key);
             if (existing) {
               existing.bookings += 1;
@@ -35,6 +38,7 @@ export default function AdminCustomersPage() {
                 existing.totalSpent += b.grandTotal;
             } else {
               map.set(key, {
+                id: key,
                 name: b.customerName,
                 email: b.email,
                 phone: b.phone,
@@ -70,7 +74,7 @@ export default function AdminCustomersPage() {
             </thead>
             <tbody>
               {customers.map((c) => (
-                <tr key={c.email} className="border-t dark:border-gray-700">
+                <tr key={c.id} className="border-t dark:border-gray-700">
                   <td className="p-4">{c.name}</td>
                   <td className="p-4">{c.email}</td>
                   <td className="p-4">{c.phone}</td>

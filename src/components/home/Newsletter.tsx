@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Instagram, MessageCircle, Phone, MapPin } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
@@ -31,37 +33,5 @@ export default function Newsletter() {
     }
   };
 
-  return (
-    <section className="py-16 bg-primary">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-3">
-          Join Our Adventure Community
-        </h2>
-        <p className="text-white/80 mb-8 max-w-md mx-auto">
-          Get exclusive trek updates, early-bird discounts, and adventure tips.
-        </p>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-        >
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-secondary"
-          />
-          <Button
-            type="submit"
-            variant="secondary"
-            disabled={loading}
-            className="whitespace-nowrap"
-          >
-            {loading ? "Subscribing..." : "Subscribe"}
-          </Button>
-        </form>
-      </div>
-    </section>
-  );
+
 }

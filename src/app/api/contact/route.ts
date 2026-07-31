@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
+import { ContactMessage } from "@/models/ContactMessage";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -28,7 +29,8 @@ export async function POST(req: NextRequest) {
     }
 
     const data = contactSchema.parse(body);
-    console.log("Contact form:", data);
+    await connectDB();
+    await ContactMessage.create(data);
     return NextResponse.json({
       success: true,
       message: "Message sent! We will contact you soon.",
@@ -39,6 +41,22 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json(
       { error: "Failed to submit" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  try {
+    await connectDB();
+    const messages = await ContactMessage.find()
+      .sort({ createdAt: -1 })
+      .lean();
+
+    return NextResponse.json(JSON.parse(JSON.stringify(messages)));
+  } catch {
+    return NextResponse.json(
+      { error: "Failed to fetch enquiries" },
       { status: 500 }
     );
   }

@@ -1,21 +1,24 @@
 export const SITE_CONFIG = {
-  name: "Jogira Treks",
+  name: "Jogira",
   tagline: "Explore the Beauty of Sahyadri",
   subtitle: "Weekend Treks | Camping | Adventure Tours",
   description:
     "Premium weekend treks, camping, and adventure tours in the Sahyadri mountains. Certified trek leaders, safety-first approach, 500+ happy trekkers.",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://jogira-treks.vercel.app",
-  email: "hello@jogira.com",
-  phone: "+91 98765 43210",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210",
+  email: "jogira@gmail.com",
+  phone: "+91 6355 085 583",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916355085583",
+  location: "Pune",
   social: {
-    instagram: "https://instagram.com/jogiratreks",
+    instagram:
+      "https://www.instagram.com/_jogira_?igsh=enVscnhxb3hjcHA%3D&utm_source=qr",
     facebook: "https://facebook.com/jogiratreks",
     youtube: "https://youtube.com/@jogiratreks",
+    maps: "https://maps.app.goo.gl/fnQ8jjQZCFqc4QY67",
   },
   stats: {
     trekkers: "500+",
-    treks: "100+",
+    treks: "50+",
     rating: "4+",
   },
 };

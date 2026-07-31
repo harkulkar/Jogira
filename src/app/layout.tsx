@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { SITE_CONFIG } from "@/lib/constants";
+import SiteShell from "@/components/layout/SiteShell";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -64,7 +65,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} font-sans`}>
         <ThemeProvider>
           <WishlistProvider>
-            {children}
+            <SiteShell>{children}</SiteShell>
             <ToastProvider />
           </WishlistProvider>
         </ThemeProvider>

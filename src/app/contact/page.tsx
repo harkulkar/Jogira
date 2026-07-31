@@ -92,7 +92,7 @@ export default function ContactPage() {
             {[
               { icon: Mail, label: "Email", value: SITE_CONFIG.email },
               { icon: Phone, label: "Phone", value: SITE_CONFIG.phone },
-              { icon: MapPin, label: "Location", value: "Mumbai, Maharashtra" },
+              { icon: MapPin, label: "Location", value: SITE_CONFIG.location },
             ].map(({ icon: Icon, label, value }) => (
               <div
                 key={label}

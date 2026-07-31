@@ -9,6 +9,7 @@ import {
   Calendar,
   Users,
   BarChart3,
+  MessageSquareMore,
   LogOut,
   Menu,
   X,
@@ -20,6 +21,7 @@ const NAV = [
   { href: "/admin/treks", label: "Treks", icon: Mountain },
   { href: "/admin/bookings", label: "Bookings", icon: Calendar },
   { href: "/admin/customers", label: "Customers", icon: Users },
+  { href: "/admin/enquiry", label: "Enquiry", icon: MessageSquareMore },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 

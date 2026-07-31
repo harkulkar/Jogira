@@ -11,7 +11,7 @@ const WHY_CHOOSE = [
   {
     icon: Mountain,
     title: "Adventure Experience",
-    desc: "10+ years organizing treks across Maharashtra's most scenic trails.",
+    desc: "4+ years organizing treks across Maharashtra's most scenic trails.",
   },
   {
     icon: Award,
@@ -35,7 +35,7 @@ export default function AboutPage() {
     <div className="pt-24 pb-16">
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">About Jogira Treks</h1>
+          <h1 className="text-4xl font-bold mb-4">About Jogira</h1>
           <p className="max-w-2xl mx-auto text-white/90">
             Born from a passion for the Sahyadri mountains, we create unforgettable
             trekking experiences for adventurers of all levels.
@@ -50,12 +50,12 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-              Jogira Treks started in 2015 when a group of college friends decided
-              to share their love for the Western Ghats with fellow Mumbaikars and
-              Punekars seeking escape from city life.
+              Jogira started in 2025 when a group of college friends decided
+              to share their love for the Western Ghats with fellow Punekars and Mumbaikars 
+             seeking escape from city life.
             </p>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Today, we&apos;ve guided over 500 trekkers through 100+ successful
+              Today, we&apos;ve guided over 500 trekkers through 50+ successful
               expeditions, from beginner-friendly fort treks to challenging
               multi-day camping adventures.
             </p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               { label: "Happy Trekkers", value: SITE_CONFIG.stats.trekkers },
               { label: "Treks Completed", value: SITE_CONFIG.stats.treks },
               { label: "Google Rating", value: SITE_CONFIG.stats.rating },
-              { label: "Years Experience", value: "10+" },
+              { label: "Years Experience", value: "4+" },
             ].map((stat) => (
               <div
                 key={stat.label}
