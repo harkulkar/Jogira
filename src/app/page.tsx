@@ -28,7 +28,7 @@ export default async function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    name: "Jogira Treks",
+    name: "Jogira Trek",
     description:
       "Premium weekend treks and adventure tours in the Sahyadri mountains",
     url: process.env.NEXT_PUBLIC_APP_URL,

@@ -4,8 +4,8 @@ export const SITE_CONFIG = {
   subtitle: "Weekend Treks | Camping | Adventure Tours",
   description:
     "Premium weekend treks, camping, and adventure tours in the Sahyadri mountains. Certified trek leaders, safety-first approach, 500+ happy trekkers.",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://jogira-treks.vercel.app",
-  email: "jogira@gmail.com",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://jogiratrek.vercel.app",
+  email: "jogiratrek@gmail.com",
   phone: "+91 6355 085 583",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916355085583",
   location: "Pune",
