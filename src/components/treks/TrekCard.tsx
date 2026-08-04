@@ -92,7 +92,7 @@ export default function TrekCard({ trek, index = 0 }: TrekCardProps) {
             {formatCurrency(trek.price)}
           </span>
           <Link href={`/treks/${trek.slug}`}>
-            <Button size="sm">Book Now</Button>
+            <Button size="sm">See Details</Button>
           </Link>
         </div>
       </div>
