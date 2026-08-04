@@ -8,6 +8,7 @@ import { CheckoutSession, formatCurrency } from "@/types";
 import { SEED_TREKS } from "@/lib/seed-data";
 
 function CheckoutForm() {
+  const isValidPhoneNumber = (phone: string) => /^\d{10}$/.test(phone);
   const searchParams = useSearchParams();
   const router = useRouter();
   const [session, setSession] = useState<CheckoutSession | null>(null);
@@ -55,6 +56,11 @@ function CheckoutForm() {
   const handleConfirmBooking = async () => {
     if (!form.customerName || !form.phone) {
       toast.error("Please fill all required fields");
+      return;
+    }
+
+    if (!isValidPhoneNumber(form.phone)) {
+      toast.error("Phone number must be exactly 10 digits");
       return;
     }
 
@@ -122,10 +128,24 @@ function CheckoutForm() {
                       required
                       value={form[key as keyof typeof form]}
                       onChange={(e) =>
-                        setForm({ ...form, [key]: e.target.value })
+                        setForm({
+                          ...form,
+                          [key]:
+                            key === "phone"
+                              ? e.target.value.replace(/\D/g, "").slice(0, 10)
+                              : e.target.value,
+                        })
                       }
+                      inputMode={key === "phone" ? "numeric" : undefined}
+                      maxLength={key === "phone" ? 10 : undefined}
+                      pattern={key === "phone" ? "\\d{10}" : undefined}
                       className="w-full px-4 py-3 rounded-xl border dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
                     />
+                    {key === "phone" && (
+                      <p className="mt-1 text-xs text-gray-500">
+                        Enter exactly 10 digits.
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>

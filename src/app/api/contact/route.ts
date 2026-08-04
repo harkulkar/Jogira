@@ -4,11 +4,11 @@ import { ContactMessage } from "@/models/ContactMessage";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(10),
-  subject: z.string().min(3),
-  message: z.string().min(10),
+  name: z.string().trim().min(2),
+  email: z.string().trim().email(),
+  phone: z.string().trim().regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
+  subject: z.string().trim().min(3),
+  message: z.string().trim().min(10),
 });
 
 const newsletterSchema = z.object({

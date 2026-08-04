@@ -11,7 +11,7 @@ import { z } from "zod";
 
 const bookingSchema = z.object({
   customerName: z.string().min(2),
-  phone: z.string().min(10),
+  phone: z.string().regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
   participants: z.number().int().min(1).max(20),
   trekId: z.string(),
   trekDate: z.string().optional(),

@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export default function ContactPage() {
+  const isValidPhoneNumber = (phone: string) => /^\d{10}$/.test(phone);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -18,19 +19,36 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+    };
+
+    if (!isValidPhoneNumber(payload.phone)) {
+      toast.error("Phone number must be exactly 10 digits");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (res.ok) {
         toast.success(data.message);
         setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
-        toast.error("Failed to send message");
+        const errorMessage = Array.isArray(data.error)
+          ? data.error[0]?.message
+          : data.error;
+        toast.error(errorMessage || "Failed to send message");
       }
     } catch {
       toast.error("Something went wrong");
@@ -68,9 +86,25 @@ export default function ContactPage() {
                   type={type}
                   required
                   value={form[key as keyof typeof form]}
-                  onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      [key]:
+                        key === "phone"
+                          ? e.target.value.replace(/\D/g, "").slice(0, 10)
+                          : e.target.value,
+                    })
+                  }
+                  inputMode={key === "phone" ? "numeric" : undefined}
+                  maxLength={key === "phone" ? 10 : undefined}
+                  pattern={key === "phone" ? "\\d{10}" : undefined}
                   className="w-full px-4 py-3 rounded-xl border dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
+                {key === "phone" && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Enter exactly 10 digits.
+                  </p>
+                )}
               </div>
             ))}
             <div>
